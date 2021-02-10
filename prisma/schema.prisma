@@ -1,11 +1,18 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
+// Tells Prisma I'm using SQLite for my database connection.
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
+// Indicates that I want to generate Prisma Client
 generator client {
   provider = "prisma-client-js"
+}
+
+// Here, I have written out my Link as a model. It defines the structure of the Link database that Prisma will create.
+model Link {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  description String
+  url         String
 }
