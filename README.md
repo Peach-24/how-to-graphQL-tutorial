@@ -2,7 +2,10 @@
 
 A hackernews clone made as part of the GraphQL tutorial on [howtographql.com](https://www.howtographql.com/). 
 
-**About**
+___
+
+### About
+
 GraphQL is an open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data. GraphQL was developed internally by Facebook in 2012 before being publicly released in 2015.
 
 It replaces REST as an API design paradigm and is becoming the new standard for exposing the data and functionality of a web server.
