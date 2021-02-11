@@ -5,7 +5,7 @@ function getTokenPayload(token) {
   return jwt.verify(token, APP_SECRET);
 }
 
-function getUserID(req, authToken) {
+function getUserId(req, authToken) {
   if (req) {
     const authHeader = req.headers.authorization;
     if (authHeader) {
@@ -22,7 +22,7 @@ function getUserID(req, authToken) {
 
 module.exports = {
   APP_SECRET,
-  getUserID,
+  getUserId,
 };
 
 /* 

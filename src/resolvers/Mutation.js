@@ -26,7 +26,7 @@ const login = async (parent, args, context, info) => {
     throw new Error("Invalid password");
   }
 
-  const token = jwt.sign({ userIf: user.id }, APP_SECRET);
+  const token = jwt.sign({ userId: user.id }, APP_SECRET);
 
   return {
     token,
@@ -34,7 +34,17 @@ const login = async (parent, args, context, info) => {
   };
 };
 
-const post = () => {};
+const post = (parent, args, context, info) => {
+  const { userId } = context;
+
+  return await context.prisma.link.create({
+    data: {
+      url: args.url,
+      description: args.description,
+      postedBy: {connect: {id: userId}}
+    }
+  })
+};
 
 module.exports = {
   signup,

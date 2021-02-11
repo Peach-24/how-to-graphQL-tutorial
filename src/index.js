@@ -9,27 +9,32 @@ const resolvers = {
     // },
   },
   Mutation: {
-    post: (parent, args, context, info) => {
-      const newLink = context.prisma.link.create({
-        data: {
-          url: args.url,
-          description: args.description,
-        },
-      });
-      return newLink;
-    },
+    // post: (parent, args, context, info) => {
+    //   const newLink = context.prisma.link.create({
+    //     data: {
+    //       url: args.url,
+    //       description: args.description,
+    //     },
+    //   });
+    //   return newLink;
+    // },
   },
 };
 
 const fs = require("fs");
 const path = require("path");
+const { getUserID } = require("./utils");
 const prisma = new PrismaClient();
 
 const server = new ApolloServer({
   typeDefs: fs.readFileSync(path.join(__dirname, "schema.graphql"), "utf8"),
   resolvers,
-  context: {
-    prisma,
+  context: ({ req }) => {
+    return {
+      ...req,
+      prisma,
+      userId: req && req.headers.authorization ? getUserId(req) : null,
+    };
   },
 });
 
