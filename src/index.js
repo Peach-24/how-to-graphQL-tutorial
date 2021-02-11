@@ -15,7 +15,7 @@ const resolvers = {
 
 const fs = require("fs");
 const path = require("path");
-const { getUserID } = require("./utils");
+const { getUserId } = require("./utils");
 const prisma = new PrismaClient();
 
 const server = new ApolloServer({
