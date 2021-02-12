@@ -10,8 +10,12 @@ const feed = async (parent, args, context, info) => {
       }
     : {};
 
+  // the links query now receives two additional arguments which might be carried by the incoming args object. Again, Prisma will take care of the rest.
+
   const links = await context.prisma.link.findMany({
     where,
+    skip: args.skip,
+    take: args.take,
   });
 
   return links;
