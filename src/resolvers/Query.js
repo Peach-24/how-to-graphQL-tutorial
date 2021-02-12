@@ -19,7 +19,9 @@ const feed = async (parent, args, context, info) => {
     orderBy: args.orderBy,
   });
 
-  return links;
+  const count = await context.prisma.link.count({ where });
+
+  return { links, count };
 };
 
 module.exports = {
